@@ -1,0 +1,659 @@
+{
+	"info": {
+		"_postman_id": "824fddfe-9034-41a6-a09d-b86c5c8f6329",
+		"name": "Twilio",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Conversations",
+			"item": [
+				{
+					"name": "List Conversations",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://conversations.twilio.com/v1/Conversations?pageSize=",
+							"protocol": "https",
+							"host": [
+								"conversations",
+								"twilio",
+								"com"
+							],
+							"path": [
+								"v1",
+								"Conversations"
+							],
+							"query": [
+								{
+									"key": "pageSize",
+									"value": "",
+									"description": "(optional) "
+								}
+							]
+						},
+						"description": "Conversation Resource APIs\nhttps://www.twilio.com/docs/conversations/api/conversation-resource"
+					},
+					"response": []
+				},
+				{
+					"name": "Create a conversation",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "MessagingServiceSid",
+									"value": "",
+									"description": "(optional) The unique id of the SMS Service this conversation belongs to",
+									"type": "text"
+								},
+								{
+									"key": "FriendlyName",
+									"value": "",
+									"description": "(optional) The human-readable name of this conversation, limited to 256 characters",
+									"type": "text"
+								},
+								{
+									"key": "Attributes",
+									"value": "",
+									"description": "(Optional) An optional string metadata field in JSON format you can use to store any data you wish",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://conversations.twilio.com/v1/Conversations",
+							"protocol": "https",
+							"host": [
+								"conversations",
+								"twilio",
+								"com"
+							],
+							"path": [
+								"v1",
+								"Conversations"
+							]
+						},
+						"description": "Create a new conversation"
+					},
+					"response": []
+				},
+				{
+					"name": "Fetch a conversation",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://conversations.twilio.com/v1/Conversations/:sid",
+							"protocol": "https",
+							"host": [
+								"conversations",
+								"twilio",
+								"com"
+							],
+							"path": [
+								"v1",
+								"Conversations",
+								":sid"
+							],
+							"variable": [
+								{
+									"key": "sid",
+									"value": "",
+									"description": "(Required) Conversation's sid. If not provided, all the conversations will be listed"
+								}
+							]
+						},
+						"description": "Fetch a single conversation"
+					},
+					"response": []
+				},
+				{
+					"name": "List Conversation Participant(s)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://conversations.twilio.com/v1/Conversations/:sid/Participants",
+							"protocol": "https",
+							"host": [
+								"conversations",
+								"twilio",
+								"com"
+							],
+							"path": [
+								"v1",
+								"Conversations",
+								":sid",
+								"Participants"
+							],
+							"variable": [
+								{
+									"key": "sid",
+									"value": "",
+									"description": "(required) Conversation's sid"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Conversation Message(s)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://conversations.twilio.com/v1/Conversations/:sid/Messages",
+							"protocol": "https",
+							"host": [
+								"conversations",
+								"twilio",
+								"com"
+							],
+							"path": [
+								"v1",
+								"Conversations",
+								":sid",
+								"Messages"
+							],
+							"variable": [
+								{
+									"key": "sid",
+									"value": "",
+									"description": "(required) Conversation's Sid"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Conversation",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "FriendlyName",
+									"value": "",
+									"description": "(optional) New friendly name",
+									"type": "text"
+								},
+								{
+									"key": "Attributes",
+									"value": "",
+									"description": "(optional) New Attributes",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://conversations.twilio.com/v1/Conversations/:conversationSid",
+							"protocol": "https",
+							"host": [
+								"conversations",
+								"twilio",
+								"com"
+							],
+							"path": [
+								"v1",
+								"Conversations",
+								":conversationSid"
+							],
+							"variable": [
+								{
+									"key": "conversationSid",
+									"value": "",
+									"description": "(required) Conversation's sid"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Conversation",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://conversations.twilio.com/v1/Conversations/:conversationSid",
+							"protocol": "https",
+							"host": [
+								"conversations",
+								"twilio",
+								"com"
+							],
+							"path": [
+								"v1",
+								"Conversations",
+								":conversationSid"
+							],
+							"variable": [
+								{
+									"key": "conversationSid",
+									"value": "",
+									"description": "(required) Conversation's Sid"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Usage",
+			"item": [
+				{
+					"name": "Events log",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://monitor.twilio.com/v1/Events/",
+							"protocol": "https",
+							"host": [
+								"monitor",
+								"twilio",
+								"com"
+							],
+							"path": [
+								"v1",
+								"Events",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verify Usage",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.twilio.com/2010-04-01/Accounts/:accountId/Usage/Records/AllTime?Category=authy-phone-verifications",
+							"protocol": "https",
+							"host": [
+								"api",
+								"twilio",
+								"com"
+							],
+							"path": [
+								"2010-04-01",
+								"Accounts",
+								":accountId",
+								"Usage",
+								"Records",
+								"AllTime"
+							],
+							"query": [
+								{
+									"key": "Category",
+									"value": "authy-phone-verifications"
+								}
+							],
+							"variable": [
+								{
+									"key": "accountId",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "All APIs usage",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.twilio.com/2010-04-01/Accounts/:accountSid/Usage/Records",
+							"protocol": "https",
+							"host": [
+								"api",
+								"twilio",
+								"com"
+							],
+							"path": [
+								"2010-04-01",
+								"Accounts",
+								":accountSid",
+								"Usage",
+								"Records"
+							],
+							"variable": [
+								{
+									"key": "accountSid",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Verify",
+			"item": [
+				{
+					"name": "Twilio Verify V1 Create Verification ",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							},
+							{
+								"key": "X-Authy-API-Key",
+								"value": "{{twilio_authy_api_key}}",
+								"description": "(required) Production API Key for the Verify app ",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "via",
+									"value": "sms",
+									"description": "(required) Usually \"sms\"",
+									"type": "text"
+								},
+								{
+									"key": "phone_number",
+									"value": "7824336224",
+									"description": "(required) Phone number",
+									"type": "text"
+								},
+								{
+									"key": "country_code",
+									"value": "44",
+									"description": "(required) Country code (without \"+\")",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://api.authy.com/protected/json/phones/verification/start",
+							"protocol": "https",
+							"host": [
+								"api",
+								"authy",
+								"com"
+							],
+							"path": [
+								"protected",
+								"json",
+								"phones",
+								"verification",
+								"start"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Twilio Verify V1 Check Verification",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Authy-API-Key",
+								"value": "w4Vt3K9LsP84B8HemZo6Oxz29Nua6mu1",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "https://api.authy.com/protected/json/phones/verification/check?phone_number=&country_code=&verification_code=",
+							"protocol": "https",
+							"host": [
+								"api",
+								"authy",
+								"com"
+							],
+							"path": [
+								"protected",
+								"json",
+								"phones",
+								"verification",
+								"check"
+							],
+							"query": [
+								{
+									"key": "phone_number",
+									"value": "",
+									"description": "(required) Number in the format returned by the verification creation (i.e. with dashes, e.g. 782-433-6445)"
+								},
+								{
+									"key": "country_code",
+									"value": "",
+									"description": "(required) Country code"
+								},
+								{
+									"key": "verification_code",
+									"value": "",
+									"description": "(required) Verification code"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Studio",
+			"item": [
+				{
+					"name": "Trigger studio flow",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "To",
+									"value": "",
+									"description": "(required) Message / call To number",
+									"type": "text"
+								},
+								{
+									"key": "From",
+									"value": "",
+									"description": "(required) Message / call From niumber",
+									"type": "text"
+								},
+								{
+									"key": "Parameters",
+									"value": "",
+									"description": "(optional) JSON with additional parameters",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "https://studio.twilio.com/v1/Flows/:flowId/Executions",
+							"protocol": "https",
+							"host": [
+								"studio",
+								"twilio",
+								"com"
+							],
+							"path": [
+								"v1",
+								"Flows",
+								":flowId",
+								"Executions"
+							],
+							"variable": [
+								{
+									"key": "flowId",
+									"value": "",
+									"description": "(required) Studio flow Id"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Trigger studio flow JSON",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "To",
+									"value": "",
+									"description": "(required) Message / call To number",
+									"type": "text"
+								},
+								{
+									"key": "From",
+									"value": "",
+									"description": "(required) Message / call From niumber",
+									"type": "text"
+								},
+								{
+									"key": "Parameters",
+									"value": "",
+									"description": "(optional) JSON with additional parameters",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "https://studio.twilio.com/v1/Flows/:flowId/Executions",
+							"protocol": "https",
+							"host": [
+								"studio",
+								"twilio",
+								"com"
+							],
+							"path": [
+								"v1",
+								"Flows",
+								":flowId",
+								"Executions"
+							],
+							"variable": [
+								{
+									"key": "flowId",
+									"value": "",
+									"description": "(required) Studio flow Id"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "{{twilio_auth_token}}",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "{{twilio_account_sid}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "90e184ed-3586-4f4f-86b7-ed72b97227d4",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "f1354a0e-9ea2-40ca-9b75-70a02a4aceff",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
