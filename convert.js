@@ -1,10 +1,54 @@
-var Converter = require('openapi-to-postmanv2');
+const fs = require('fs');
 
-var fs = require('fs'),
-  Converter = require('openapi-to-postmanv2'),
-  openapiData = fs.readFileSync('./src/twilio_api.json', {
-    encoding: 'UTF8'
-  });
+const templPostmanFolder = {
+  id: '',
+  name: '',
+  item: [
+    // Array of templPostmanRequest
+  ]
+};
+
+const templPostmanRequest = {
+  id: '',
+  name: '',
+  request: '',
+  response: '', // templPostmanRequestInfo
+  event: ''
+};
+
+const templPostmanRequestInfo = {
+  name: '',
+  description: {
+    content: '',
+    type: 'text/plain'
+  },
+  url: {
+    path: [],
+    host: 'https://api.twilio.com/2010-04-01',
+    query: [], // Array of templPostmanRequestQuery
+    variable: [] // Array of templPostmanRequestQuery
+  },
+  header: {
+    // Not needed for GET
+    '0': {
+      key: 'Content-Type',
+      value: 'application/x-www-form-urlencoded'
+    }
+  },
+  body: {
+    // Not neede for get
+    mode: 'urlencoded',
+    urlencoded: [] // Array of templPostmanRequestQuery
+  },
+  method: ''
+};
+
+const templPostmanRequestQuery = {
+  description: '',
+  type: 'any',
+  value: '',
+  key: ''
+};
 
 const TwilioBaseUrl = 'https://api.twilio.com/2010-04-01';
 
@@ -36,8 +80,15 @@ function fixUrlPath(path) {
   return path.slice(path.indexOf('2010-04-01') + 1);
 }
 
+function extractData(data) {
+  return {
+    item: { ...data.item[0].item[1].item },
+    info: { ...data.info }
+  };
+}
+
 function postProcess(exportResult) {
-  let tmpResult = exportResult;
+  let tmpResult = extractData(exportResult);
   tmpResult.item.forEach(folder => {
     // Set Folder Name
     folder.name = FolderNames[folder.name];
@@ -61,16 +112,91 @@ function postProcess(exportResult) {
   return tmpResult;
 }
 
-Converter.convert(
-  { type: 'string', data: openapiData },
-  {},
-  (err, conversionResult) => {
-    if (!conversionResult.result) {
-      console.log('Could not convert', conversionResult.reason);
-    } else {
-      let exportedJson = postProcess(conversionResult.output[0].data);
-      //   console.log('The collection object is: ', conversionResult.output[0].data);
-      fs.writeFileSync('./exported.json', JSON.stringify(exportedJson));
+function createGetRequestInfo(apiRequest, path) {
+  let tmpRequestInfo = {};
+  tmpRequestInfo.name = 'Fetch ' + pathsToFolders[path].resource;
+  tmpRequestInfo.url = {};
+  // Process Path
+  tmpRequestInfo.url.path = path.split('/');
+  tmpRequestInfo.url.path.forEach((item, index) => {
+    if (item.startsWith('{')) {
+      tmpRequestInfo.url.path[index] = ':' + item.slice(1, -1);
+      if (!tmpRequestInfo.url.variable) {
+        tmpRequestInfo.url.variable = [];
+      }
+      tmpRequestInfo.url.variable.push({ key: item.slice(1, -1), value: '' });
     }
+  });
+
+  tmpRequestInfo.url.query = [];
+  apiRequest.parameters.forEach(parameter => {
+    if (tmpRequestInfo.url.path.indexOf(':' + parameter.name) == -1) {
+      tmpRequestInfo.url.query.push({
+        description:
+          (parameter.required ? '(Required) ' : '') + parameter.description,
+        value: '<' + parameter.schema.type + '>',
+        key: parameter.name,
+        disabled: !parameter.required
+      });
+    } else {
+      tmpRequestInfo.url.variable.forEach((variable, index) => {
+        if (variable.key === parameter.name) {
+          tmpRequestInfo.url.variable[index].description =
+            parameter.description;
+        }
+      });
+    }
+  });
+  // delete tmpRequestInfo.body;
+  // delete tmpRequestInfo.header;
+  return tmpRequestInfo;
+}
+
+function createRequests(apiRequests, path) {
+  let tmpRequests = [];
+  if (apiRequests.get) {
+    // let tmpPostmanRequest = { ...templPostmanRequest };
+    let tmpPostmanRequest = {};
+    tmpPostmanRequest.name = 'Fetch ' + pathsToFolders[path].resource;
+    tmpPostmanRequest.request = createGetRequestInfo(apiRequests.get, path);
+    tmpRequests.push(tmpPostmanRequest);
   }
-);
+  // TODO
+  // if (apiRequests.post) {
+  //   let tmpPostmanRequest = {...templPostmanRequest}
+  //   tmpRequest.push(tmpPostmanRequest)
+  // }
+  return tmpRequests;
+}
+
+var postmanOutput = {};
+const apiSource = JSON.parse(fs.readFileSync('./src/twilio_api.json'));
+const apiPaths = apiSource.paths;
+const pathsToFolders = JSON.parse(fs.readFileSync('./paths.json'));
+
+postmanOutput.info = {
+  name: 'Twilio REST API',
+  version: {},
+  schema:
+    'https://schema.getpostman.com/json/collection/v2.1.0/collection.json',
+  description:
+    'This is the public Twilio REST API.\n\nContact Support:\n Name: Twilio Support\n Email: support@twilio.com'
+};
+postmanOutput.items = [];
+// tmp = {}
+for (path in apiPaths) {
+  console.log(`Processing ${path}`);
+  // tmp[path] = {
+  //   name: "",
+  //   resource: "",
+  //   description: apiPaths[path].description
+  // }
+  // let tmpFolder = { ...templPostmanFolder };
+  let tmpFolder = {};
+  tmpFolder.name = pathsToFolders[path].name;
+  if (tmpFolder.name) {
+    tmpFolder.item = createRequests(apiPaths[path], path);
+    postmanOutput.items.push(tmpFolder);
+  }
+}
+fs.writeFileSync('./exported.json', JSON.stringify(postmanOutput));
