@@ -114,23 +114,31 @@ function postProcess(exportResult) {
 
 function createGetRequestInfo(apiRequest, path) {
   let tmpRequestInfo = {};
+  let pathVariables= []
+  let variableNameRegex = /{(.*)}/
   tmpRequestInfo.name = 'Fetch ' + pathsToFolders[path].resource;
   tmpRequestInfo.url = {};
+
   // Process Path
   tmpRequestInfo.url.path = path.split('/');
   tmpRequestInfo.url.path.forEach((item, index) => {
-    if (item.startsWith('{')) {
-      tmpRequestInfo.url.path[index] = ':' + item.slice(1, -1);
+    if (variableNameRegex.test(item)) {
+      let variableName = variableNameRegex.exec(item)[1]
+      pathVariables.push(variableName) 
+      // Workaround for Postman path variable limitation 
+      variableName = item.slice(1).replace('}', '') 
+      tmpRequestInfo.url.path[index] = ':' + variableName
       if (!tmpRequestInfo.url.variable) {
         tmpRequestInfo.url.variable = [];
       }
-      tmpRequestInfo.url.variable.push({ key: item.slice(1, -1), value: '' });
+      tmpRequestInfo.url.variable.push({ key: variableName, value: '', description: ''});
     }
   });
 
   tmpRequestInfo.url.query = [];
   apiRequest.parameters.forEach(parameter => {
-    if (tmpRequestInfo.url.path.indexOf(':' + parameter.name) == -1) {
+    if (pathVariables.indexOf(parameter.name) == -1) {
+      // Parameter is *not* a path variable
       tmpRequestInfo.url.query.push({
         description:
           (parameter.required ? '(Required) ' : '') + parameter.description,
