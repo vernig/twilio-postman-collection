@@ -114,8 +114,8 @@ function postProcess(exportResult) {
 
 function createGetRequestInfo(apiRequest, path) {
   let tmpRequestInfo = {};
-  let pathVariables= []
-  let variableNameRegex = /{(.*)}/
+  let pathVariables = [];
+  let variableNameRegex = /{(.*)}/;
   tmpRequestInfo.name = 'Fetch ' + pathsToFolders[path].resource;
   tmpRequestInfo.url = {};
 
@@ -123,15 +123,19 @@ function createGetRequestInfo(apiRequest, path) {
   tmpRequestInfo.url.path = path.split('/');
   tmpRequestInfo.url.path.forEach((item, index) => {
     if (variableNameRegex.test(item)) {
-      let variableName = variableNameRegex.exec(item)[1]
-      pathVariables.push(variableName) 
-      // Workaround for Postman path variable limitation 
-      variableName = item.slice(1).replace('}', '') 
-      tmpRequestInfo.url.path[index] = ':' + variableName
+      let variableName = variableNameRegex.exec(item)[1];
+      pathVariables.push(variableName);
+      // Workaround for Postman path variable limitation
+      variableName = item.slice(1).replace('}', '');
+      tmpRequestInfo.url.path[index] = ':' + variableName;
       if (!tmpRequestInfo.url.variable) {
         tmpRequestInfo.url.variable = [];
       }
-      tmpRequestInfo.url.variable.push({ key: variableName, value: '', description: ''});
+      tmpRequestInfo.url.variable.push({
+        key: variableName,
+        value: '',
+        description: ''
+      });
     }
   });
 
@@ -147,12 +151,9 @@ function createGetRequestInfo(apiRequest, path) {
         disabled: !parameter.required
       });
     } else {
-      tmpRequestInfo.url.variable.forEach((variable, index) => {
-        if (variable.key === parameter.name) {
-          tmpRequestInfo.url.variable[index].description =
-            parameter.description;
-        }
-      });
+      let pathVariableIndex = pathVariables.indexOf(parameter.name);
+      tmpRequestInfo.url.variable[pathVariableIndex].description =
+        parameter.description;
     }
   });
   // delete tmpRequestInfo.body;
