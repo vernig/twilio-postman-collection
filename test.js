@@ -16,7 +16,7 @@ let applicationFetchRequest = getRequest(
 );
 assert.deepEqual(
     applicationFetchRequest.request.url.variable[1].description,
-  'The Twilio-provided s tring that uniquely identifies the Application resource to fetch.'
+  'The Twilio-provided string that uniquely identifies the Application resource to fetch.'
 );
 
 // If we get here all the asserts have passed
