@@ -88,5 +88,5 @@ for (path in apiPaths) {
     postmanOutput.items.push(tmpFolder);
   }
 }
-console.log('\nStoring result to exported.json')
-fs.writeFileSync('./exported.json', JSON.stringify(postmanOutput));
+console.log('\nStoring result to Twilio.postman_collection.json')
+fs.writeFileSync('./Twilio.postman_collection.json', JSON.stringify(postmanOutput));
