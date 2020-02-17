@@ -12,7 +12,7 @@ function createGetRequestInfo(apiRequest, path) {
   let tmpRequestInfo = {};
   let pathVariables = [];
   let variableNameRegex = /{(.*)}/;
-  tmpRequestInfo.name = 'Fetch ' + getAPINameFromPath(path).toLowerCase;
+  tmpRequestInfo.name = 'Fetch ' + getAPINameFromPath(path).toLowerCase();
   tmpRequestInfo.url = {};
 
   // Process Path
@@ -35,6 +35,8 @@ function createGetRequestInfo(apiRequest, path) {
     }
   });
 
+  tmpRequestInfo.url.protocol = 'https';
+  tmpRequestInfo.url.host = ['api', 'twilio', 'com'];
   tmpRequestInfo.url.query = [];
   apiRequest.parameters.forEach(parameter => {
     if (pathVariables.indexOf(parameter.name) == -1) {
@@ -65,10 +67,10 @@ function createRequests(apiRequests, path) {
     tmpPostmanRequest.request = createGetRequestInfo(apiRequests.get, path);
     tmpRequests.push(tmpPostmanRequest);
   }
-  // TODO
+  // TODO;
   // if (apiRequests.post) {
-  //   let tmpPostmanRequest = {...templPostmanRequest}
-  //   tmpRequest.push(tmpPostmanRequest)
+  //   let tmpPostmanRequest = { ...templPostmanRequest };
+  //   tmpRequest.push(tmpPostmanRequest);
   // }
   return tmpRequests;
 }
@@ -81,6 +83,21 @@ const postmanOutput = {
       'https://schema.getpostman.com/json/collection/v2.1.0/collection.json',
     description:
       'This is the public Twilio REST API.\n\nContact Support:\n Name: Twilio Support\n Email: support@twilio.com'
+  },
+  auth: {
+    type: 'basic',
+    basic: [
+      {
+        key: 'password',
+        value: '{{twilio_auth_token}}',
+        type: 'string'
+      },
+      {
+        key: 'username',
+        value: '{{twilio_account_sid}}',
+        type: 'string'
+      }
+    ]
   },
   items: []
 };
@@ -95,7 +112,7 @@ apiFiles.forEach(apiFile => {
     .replace('twilio-', '');
   let productFolder = {};
 
-  console.log(`Processing file ${apiFile}`)
+  console.log(`Processing file ${apiFile}`);
   productFolder.name = productName;
   productFolder.items = [];
 
