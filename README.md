@@ -1,6 +1,6 @@
-# 🚧🚧Twilio APIs Postman Collection
+# Twilio APIs Postman Collection
 
-Currently only `Fetch` (GETs) API request are implemented. The rest are in roadmap. 
+🚧🚧Currently only `Fetch` (GETs) API request are implemented. The rest are in roadmap. 
 
 ## Installation 
 
