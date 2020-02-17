@@ -1,10 +1,18 @@
 const fs = require('fs');
 
+function getAPINameFromPath(path) {
+  path = path.replace('.json', '');
+  let pathElements = path.split('/');
+  pathElements.splice(0, 2); // Remove first element (empty string) and API version ('2010-04-01')
+  pathElements = pathElements.filter(element => element.indexOf('{') === -1); // Remove parameters
+  return pathElements.join(' ').replace(/[A-Z]/g, element => ' ' + element);
+}
+
 function createGetRequestInfo(apiRequest, path) {
   let tmpRequestInfo = {};
   let pathVariables = [];
   let variableNameRegex = /{(.*)}/;
-  tmpRequestInfo.name = 'Fetch ' + pathsToFolders[path].resource;
+  tmpRequestInfo.name = 'Fetch ' + getAPINameFromPath(path).toLowerCase;
   tmpRequestInfo.url = {};
 
   // Process Path
@@ -53,7 +61,7 @@ function createRequests(apiRequests, path) {
   let tmpRequests = [];
   if (apiRequests.get) {
     let tmpPostmanRequest = {};
-    tmpPostmanRequest.name = 'Fetch ' + pathsToFolders[path].resource;
+    tmpPostmanRequest.name = 'Fetch ' + getAPINameFromPath(path).toLowerCase();
     tmpPostmanRequest.request = createGetRequestInfo(apiRequests.get, path);
     tmpRequests.push(tmpPostmanRequest);
   }
@@ -77,7 +85,7 @@ const postmanOutput = {
   items: []
 };
 
-const apiFiles = fs.readdirSync('./src');
+const apiFiles = fs.readdirSync('./src/');
 apiFiles.forEach(apiFile => {
   let apiSource = JSON.parse(fs.readFileSync('./src/' + apiFile));
   let apiPaths = apiSource.paths;
@@ -85,18 +93,21 @@ apiFiles.forEach(apiFile => {
     .replace('twilio_', '')
     .replace('.json', '')
     .replace('twilio-', '');
-  // const pathsToFolders = JSON.parse(fs.readFileSync('./paths.json'));
+  let productFolder = {};
 
-  
+  console.log(`Processing file ${apiFile}`)
+  productFolder.name = productName;
+  productFolder.items = [];
+
   for (path in apiPaths) {
-    console.log(`Processing ${path}`);
+    console.log(`  Processing ${path}`);
     let tmpFolder = {};
-    tmpFolder.name = pathsToFolders[path].name;
-    if (tmpFolder.name) {
-      tmpFolder.item = createRequests(apiPaths[path], path);
-      postmanOutput.items.push(tmpFolder);
-    }
+    tmpFolder.name = getAPINameFromPath(path);
+    tmpFolder.item = createRequests(apiPaths[path], path);
+    productFolder.items.push(tmpFolder);
   }
+
+  postmanOutput.items.push(productFolder);
 });
 
 console.log('\nStoring result to Twilio.postman_collection.json');
