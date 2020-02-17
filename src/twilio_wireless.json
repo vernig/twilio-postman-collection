@@ -1,0 +1,1988 @@
+{
+  "components": {
+    "schemas": {
+      "wireless.v1.account_usage_record": {
+        "properties": {
+          "account_sid": {
+            "maxLength": 34,
+            "minLength": 34,
+            "pattern": "^AC[0-9a-fA-F]{32}$",
+            "type": "string"
+          },
+          "commands": {
+            "type": "object"
+          },
+          "data": {
+            "type": "object"
+          },
+          "period": {
+            "type": "object"
+          }
+        },
+        "type": "object"
+      },
+      "wireless.v1.command": {
+        "properties": {
+          "account_sid": {
+            "maxLength": 34,
+            "minLength": 34,
+            "pattern": "^AC[0-9a-fA-F]{32}$",
+            "type": "string"
+          },
+          "command": {
+            "type": "string"
+          },
+          "command_mode": {
+            "enum": [
+              "text",
+              "binary"
+            ],
+            "type": "string"
+          },
+          "date_created": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "date_updated": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "delivery_receipt_requested": {
+            "type": "boolean"
+          },
+          "direction": {
+            "enum": [
+              "from_sim",
+              "to_sim"
+            ],
+            "type": "string"
+          },
+          "sid": {
+            "maxLength": 34,
+            "minLength": 34,
+            "pattern": "^DC[0-9a-fA-F]{32}$",
+            "type": "string"
+          },
+          "sim_sid": {
+            "maxLength": 34,
+            "minLength": 34,
+            "pattern": "^DE[0-9a-fA-F]{32}$",
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "queued",
+              "sent",
+              "delivered",
+              "received",
+              "failed"
+            ],
+            "type": "string"
+          },
+          "transport": {
+            "enum": [
+              "sms",
+              "ip"
+            ],
+            "type": "string"
+          },
+          "url": {
+            "format": "uri",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "wireless.v1.rate_plan": {
+        "properties": {
+          "account_sid": {
+            "maxLength": 34,
+            "minLength": 34,
+            "pattern": "^AC[0-9a-fA-F]{32}$",
+            "type": "string"
+          },
+          "data_enabled": {
+            "type": "boolean"
+          },
+          "data_limit": {
+            "type": "integer"
+          },
+          "data_metering": {
+            "type": "string"
+          },
+          "date_created": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "date_updated": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "friendly_name": {
+            "type": "string"
+          },
+          "international_roaming": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "international_roaming_data_limit": {
+            "type": "integer"
+          },
+          "messaging_enabled": {
+            "type": "boolean"
+          },
+          "national_roaming_data_limit": {
+            "type": "integer"
+          },
+          "national_roaming_enabled": {
+            "type": "boolean"
+          },
+          "sid": {
+            "maxLength": 34,
+            "minLength": 34,
+            "pattern": "^WP[0-9a-fA-F]{32}$",
+            "type": "string"
+          },
+          "unique_name": {
+            "type": "string"
+          },
+          "url": {
+            "format": "uri",
+            "type": "string"
+          },
+          "voice_enabled": {
+            "type": "boolean"
+          }
+        },
+        "type": "object"
+      },
+      "wireless.v1.sim": {
+        "properties": {
+          "account_sid": {
+            "maxLength": 34,
+            "minLength": 34,
+            "pattern": "^AC[0-9a-fA-F]{32}$",
+            "type": "string"
+          },
+          "commands_callback_method": {
+            "enum": [
+              "head",
+              "get",
+              "post",
+              "patch",
+              "put",
+              "delete",
+              "HEAD",
+              "GET",
+              "POST",
+              "PATCH",
+              "PUT",
+              "DELETE"
+            ],
+            "type": "string"
+          },
+          "commands_callback_url": {
+            "format": "uri",
+            "type": "string"
+          },
+          "date_created": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "date_updated": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "e_id": {
+            "type": "string"
+          },
+          "friendly_name": {
+            "type": "string"
+          },
+          "iccid": {
+            "type": "string"
+          },
+          "ip_address": {
+            "type": "string"
+          },
+          "links": {
+            "type": "object"
+          },
+          "rate_plan_sid": {
+            "maxLength": 34,
+            "minLength": 34,
+            "pattern": "^WP[0-9a-fA-F]{32}$",
+            "type": "string"
+          },
+          "reset_status": {
+            "enum": [
+              "resetting"
+            ],
+            "type": "string"
+          },
+          "sid": {
+            "maxLength": 34,
+            "minLength": 34,
+            "pattern": "^DE[0-9a-fA-F]{32}$",
+            "type": "string"
+          },
+          "sms_fallback_method": {
+            "enum": [
+              "head",
+              "get",
+              "post",
+              "patch",
+              "put",
+              "delete",
+              "HEAD",
+              "GET",
+              "POST",
+              "PATCH",
+              "PUT",
+              "DELETE"
+            ],
+            "type": "string"
+          },
+          "sms_fallback_url": {
+            "format": "uri",
+            "type": "string"
+          },
+          "sms_method": {
+            "enum": [
+              "head",
+              "get",
+              "post",
+              "patch",
+              "put",
+              "delete",
+              "HEAD",
+              "GET",
+              "POST",
+              "PATCH",
+              "PUT",
+              "DELETE"
+            ],
+            "type": "string"
+          },
+          "sms_url": {
+            "format": "uri",
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "new",
+              "ready",
+              "active",
+              "suspended",
+              "deactivated",
+              "canceled",
+              "scheduled",
+              "updating"
+            ],
+            "type": "string"
+          },
+          "unique_name": {
+            "type": "string"
+          },
+          "url": {
+            "format": "uri",
+            "type": "string"
+          },
+          "voice_fallback_method": {
+            "enum": [
+              "head",
+              "get",
+              "post",
+              "patch",
+              "put",
+              "delete",
+              "HEAD",
+              "GET",
+              "POST",
+              "PATCH",
+              "PUT",
+              "DELETE"
+            ],
+            "type": "string"
+          },
+          "voice_fallback_url": {
+            "format": "uri",
+            "type": "string"
+          },
+          "voice_method": {
+            "enum": [
+              "head",
+              "get",
+              "post",
+              "patch",
+              "put",
+              "delete",
+              "HEAD",
+              "GET",
+              "POST",
+              "PATCH",
+              "PUT",
+              "DELETE"
+            ],
+            "type": "string"
+          },
+          "voice_url": {
+            "format": "uri",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "wireless.v1.sim.data_session": {
+        "properties": {
+          "account_sid": {
+            "maxLength": 34,
+            "minLength": 34,
+            "pattern": "^AC[0-9a-fA-F]{32}$",
+            "type": "string"
+          },
+          "cell_id": {
+            "type": "string"
+          },
+          "cell_location_estimate": {
+            "type": "object"
+          },
+          "end": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "imei": {
+            "type": "string"
+          },
+          "last_updated": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "operator_country": {
+            "type": "string"
+          },
+          "operator_mcc": {
+            "type": "string"
+          },
+          "operator_mnc": {
+            "type": "string"
+          },
+          "operator_name": {
+            "type": "string"
+          },
+          "packets_downloaded": {
+            "type": "integer"
+          },
+          "packets_uploaded": {
+            "type": "integer"
+          },
+          "radio_link": {
+            "type": "string"
+          },
+          "sid": {
+            "type": "string"
+          },
+          "sim_sid": {
+            "type": "string"
+          },
+          "start": {
+            "format": "date-time",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "wireless.v1.sim.usage_record": {
+        "properties": {
+          "account_sid": {
+            "maxLength": 34,
+            "minLength": 34,
+            "pattern": "^AC[0-9a-fA-F]{32}$",
+            "type": "string"
+          },
+          "commands": {
+            "type": "object"
+          },
+          "data": {
+            "type": "object"
+          },
+          "period": {
+            "type": "object"
+          },
+          "sim_sid": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      }
+    },
+    "securitySchemes": {
+      "accountSid_authToken": {
+        "scheme": "basic",
+        "type": "http"
+      }
+    }
+  },
+  "info": {
+    "contact": {
+      "email": "support@twilio.com",
+      "name": "Twilio Support",
+      "url": "https://support.twilio.com"
+    },
+    "description": "This is the public Twilio REST API.",
+    "license": {
+      "name": "Apache 2.0",
+      "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
+    },
+    "termsOfService": "https://www.twilio.com/legal/tos",
+    "title": "Twilio REST API",
+    "version": "81ff5a4"
+  },
+  "openapi": "3.0.1",
+  "paths": {
+    "/v1/Commands": {
+      "description": "Machine-to-machine commands sent to/from devices",
+      "get": {
+        "description": "Retrieve a list of Commands from your account.",
+        "parameters": [
+          {
+            "description": "The `sid` or `unique_name` of the [Sim resources](https://www.twilio.com/docs/wireless/api/sim) to read.",
+            "in": "query",
+            "name": "Sim",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The status of the resources to read. Can be: `queued`, `sent`, `delivered`, `received`, or `failed`.",
+            "in": "query",
+            "name": "Status",
+            "required": false,
+            "schema": {
+              "enum": [
+                "queued",
+                "sent",
+                "delivered",
+                "received",
+                "failed"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "Only return Commands with this direction value.",
+            "in": "query",
+            "name": "Direction",
+            "required": false,
+            "schema": {
+              "enum": [
+                "from_sim",
+                "to_sim"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "Only return Commands with this transport value. Can be: `sms` or `ip`.",
+            "in": "query",
+            "name": "Transport",
+            "required": false,
+            "schema": {
+              "enum": [
+                "sms",
+                "ip"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "How many resources to return in each list page. The default is 50, and the maximum is 1000.",
+            "in": "query",
+            "name": "PageSize",
+            "schema": {
+              "maximum": 1000,
+              "minimum": 1,
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "commands": {
+                      "items": {
+                        "$ref": "#/components/schemas/wireless.v1.command"
+                      },
+                      "type": "array"
+                    },
+                    "meta": {
+                      "properties": {
+                        "first_page_url": {
+                          "format": "uri",
+                          "type": "string"
+                        },
+                        "key": {
+                          "type": "string"
+                        },
+                        "next_page_url": {
+                          "format": "uri",
+                          "type": "string"
+                        },
+                        "page": {
+                          "type": "integer"
+                        },
+                        "page_size": {
+                          "type": "integer"
+                        },
+                        "previous_page_url": {
+                          "format": "uri",
+                          "type": "string"
+                        },
+                        "url": {
+                          "format": "uri",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "accountSid_authToken": []
+          }
+        ],
+        "tags": [
+          "GA"
+        ]
+      },
+      "post": {
+        "description": "Send a Command to a Sim.",
+        "parameters": [
+          {
+            "description": "The message body of the Command. Can be plain text in text mode or a Base64 encoded byte string in binary mode.",
+            "in": "query",
+            "name": "Command",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The `sid` or `unique_name` of the [SIM](https://www.twilio.com/docs/wireless/api/sim) to send the Command to.",
+            "in": "query",
+            "name": "Sim",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The HTTP method we use to call `callback_url`. Can be: `POST` or `GET`, and the default is `POST`.",
+            "in": "query",
+            "name": "CallbackMethod",
+            "required": false,
+            "schema": {
+              "enum": [
+                "head",
+                "get",
+                "post",
+                "patch",
+                "put",
+                "delete",
+                "HEAD",
+                "GET",
+                "POST",
+                "PATCH",
+                "PUT",
+                "DELETE"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "The URL we call using the `callback_url` when the Command has finished sending, whether the command was delivered or it failed.",
+            "in": "query",
+            "name": "CallbackUrl",
+            "required": false,
+            "schema": {
+              "format": "uri",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The mode to use when sending the SMS message. Can be: `text` or `binary`. The default SMS mode is `text`.",
+            "in": "query",
+            "name": "CommandMode",
+            "required": false,
+            "schema": {
+              "enum": [
+                "text",
+                "binary"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "Whether to include the SID of the command in the message body. Can be: `none`, `start`, or `end`, and the default behavior is `none`. When sending a Command to a SIM in text mode, we can automatically include the SID of the Command in the message body, which could be used to ensure that the device does not process the same Command more than once.  A value of `start` will prepend the message with the Command SID, and `end` will append it to the end, separating the Command SID from the message body with a space. The length of the Command SID is included in the 160 character limit so the SMS body must be 128 characters or less before the Command SID is included.",
+            "in": "query",
+            "name": "IncludeSid",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Whether to request delivery receipt from the recipient. For Commands that request delivery receipt, the Command state transitions to 'delivered' once the server has received a delivery receipt from the device. The default value is `true`.",
+            "in": "query",
+            "name": "DeliveryReceiptRequested",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/wireless.v1.command"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "accountSid_authToken": []
+          }
+        ],
+        "tags": [
+          "GA"
+        ]
+      },
+      "servers": [
+        {
+          "url": "https://wireless.twilio.com"
+        }
+      ],
+      "x-default-output-properties": [
+        "sid",
+        "command_mode",
+        "transport",
+        "status",
+        "direction",
+        "date_created"
+      ],
+      "x-path-type": "list"
+    },
+    "/v1/Commands/{Sid}": {
+      "delete": {
+        "description": "Delete a Command instance from your account.",
+        "parameters": [
+          {
+            "description": "The SID of the Command resource to delete.",
+            "in": "path",
+            "name": "Sid",
+            "required": true,
+            "schema": {
+              "maxLength": 34,
+              "minLength": 34,
+              "pattern": "^DC[0-9a-fA-F]{32}$",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "The resource was deleted successfully."
+          }
+        },
+        "security": [
+          {
+            "accountSid_authToken": []
+          }
+        ],
+        "tags": [
+          "GA"
+        ]
+      },
+      "description": "Machine-to-machine commands sent to/from devices",
+      "get": {
+        "description": "Fetch a Command instance from your account.",
+        "parameters": [
+          {
+            "description": "The SID of the Command resource to fetch.",
+            "in": "path",
+            "name": "Sid",
+            "required": true,
+            "schema": {
+              "maxLength": 34,
+              "minLength": 34,
+              "pattern": "^DC[0-9a-fA-F]{32}$",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/wireless.v1.command"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "accountSid_authToken": []
+          }
+        ],
+        "tags": [
+          "GA"
+        ]
+      },
+      "servers": [
+        {
+          "url": "https://wireless.twilio.com"
+        }
+      ],
+      "x-default-output-properties": [
+        "sid",
+        "command_mode",
+        "transport",
+        "status",
+        "direction",
+        "date_created"
+      ],
+      "x-path-type": "instance"
+    },
+    "/v1/RatePlans": {
+      "description": "Capabilities and restrictions for SIMs",
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "description": "How many resources to return in each list page. The default is 50, and the maximum is 1000.",
+            "in": "query",
+            "name": "PageSize",
+            "schema": {
+              "maximum": 1000,
+              "minimum": 1,
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "meta": {
+                      "properties": {
+                        "first_page_url": {
+                          "format": "uri",
+                          "type": "string"
+                        },
+                        "key": {
+                          "type": "string"
+                        },
+                        "next_page_url": {
+                          "format": "uri",
+                          "type": "string"
+                        },
+                        "page": {
+                          "type": "integer"
+                        },
+                        "page_size": {
+                          "type": "integer"
+                        },
+                        "previous_page_url": {
+                          "format": "uri",
+                          "type": "string"
+                        },
+                        "url": {
+                          "format": "uri",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "rate_plans": {
+                      "items": {
+                        "$ref": "#/components/schemas/wireless.v1.rate_plan"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "accountSid_authToken": []
+          }
+        ],
+        "tags": [
+          "GA"
+        ]
+      },
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "description": "An application-defined string that uniquely identifies the resource. It can be used in place of the resource's `sid` in the URL to address the resource.",
+            "in": "query",
+            "name": "UniqueName",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "A descriptive string that you create to describe the resource. It does not have to be unique.",
+            "in": "query",
+            "name": "FriendlyName",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Whether SIMs can use GPRS/3G/4G/LTE data connectivity.",
+            "in": "query",
+            "name": "DataEnabled",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "The total data usage (download and upload combined) in Megabytes that the Network allows during one month on the home network (T-Mobile USA). The metering period begins the day of activation and ends on the same day in the following month. Can be up to 2TB and the default value is `1000`.",
+            "in": "query",
+            "name": "DataLimit",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "description": "The model used to meter data usage. Can be: `payg` and `quota-1`, `quota-10`, and `quota-50`. Learn more about the available [data metering models](https://www.twilio.com/docs/wireless/api/rate-plan#payg-vs-quota-data-plans).",
+            "in": "query",
+            "name": "DataMetering",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Whether SIMs can make, send, and receive SMS using [Commands](https://www.twilio.com/docs/wireless/api/commands).",
+            "in": "query",
+            "name": "MessagingEnabled",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "Whether SIMs can make and receive voice calls.",
+            "in": "query",
+            "name": "VoiceEnabled",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "Whether SIMs can roam on networks other than the home network (T-Mobile USA) in the United States. See [national roaming](https://www.twilio.com/docs/wireless/api/rate-plan#national-roaming).",
+            "in": "query",
+            "name": "NationalRoamingEnabled",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "The list of services that SIMs capable of using GPRS/3G/4G/LTE data connectivity can use outside of the United States. Can be: `data`, `voice`, and `messaging`.",
+            "in": "query",
+            "name": "InternationalRoaming",
+            "required": false,
+            "schema": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "The total data usage (download and upload combined) in Megabytes that the Network allows during one month on non-home networks in the United States. The metering period begins the day of activation and ends on the same day in the following month. Can be up to 2TB. See [national roaming](https://www.twilio.com/docs/wireless/api/rate-plan#national-roaming) for more info.",
+            "in": "query",
+            "name": "NationalRoamingDataLimit",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "description": "The total data usage (download and upload combined) in Megabytes that the Network allows during one month when roaming outside the United States. Can be up to 2TB.",
+            "in": "query",
+            "name": "InternationalRoamingDataLimit",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/wireless.v1.rate_plan"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "accountSid_authToken": []
+          }
+        ],
+        "tags": [
+          "GA"
+        ]
+      },
+      "servers": [
+        {
+          "url": "https://wireless.twilio.com"
+        }
+      ],
+      "x-default-output-properties": [
+        "sid",
+        "unique_name",
+        "friendly_name",
+        "date_created"
+      ],
+      "x-path-type": "list"
+    },
+    "/v1/RatePlans/{Sid}": {
+      "delete": {
+        "description": "",
+        "parameters": [
+          {
+            "description": "The SID of the RatePlan resource to delete.",
+            "in": "path",
+            "name": "Sid",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "The resource was deleted successfully."
+          }
+        },
+        "security": [
+          {
+            "accountSid_authToken": []
+          }
+        ],
+        "tags": [
+          "GA"
+        ]
+      },
+      "description": "Capabilities and restrictions for SIMs",
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "description": "The SID of the RatePlan resource to fetch.",
+            "in": "path",
+            "name": "Sid",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/wireless.v1.rate_plan"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "accountSid_authToken": []
+          }
+        ],
+        "tags": [
+          "GA"
+        ]
+      },
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "description": "The SID of the RatePlan resource to update.",
+            "in": "path",
+            "name": "Sid",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "An application-defined string that uniquely identifies the resource. It can be used in place of the resource's `sid` in the URL to address the resource.",
+            "in": "query",
+            "name": "UniqueName",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "A descriptive string that you create to describe the resource. It does not have to be unique.",
+            "in": "query",
+            "name": "FriendlyName",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/wireless.v1.rate_plan"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "accountSid_authToken": []
+          }
+        ],
+        "tags": [
+          "GA"
+        ]
+      },
+      "servers": [
+        {
+          "url": "https://wireless.twilio.com"
+        }
+      ],
+      "x-default-output-properties": [
+        "sid",
+        "unique_name",
+        "friendly_name",
+        "date_created"
+      ],
+      "x-path-type": "instance"
+    },
+    "/v1/Sims": {
+      "description": "Individual wireless SIMs",
+      "get": {
+        "description": "Retrieve a list of Sims from your account.",
+        "parameters": [
+          {
+            "description": "Only return Sim resources with this status.",
+            "in": "query",
+            "name": "Status",
+            "required": false,
+            "schema": {
+              "enum": [
+                "new",
+                "ready",
+                "active",
+                "suspended",
+                "deactivated",
+                "canceled",
+                "scheduled",
+                "updating"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "Only return Sim resources with this ICCID. Currently this should be a list with maximum size 1.",
+            "in": "query",
+            "name": "Iccid",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The `sid` or `unique_name` of the [RatePlan resource](https://www.twilio.com/docs/wireless/api/rate-plan) used by the Sim resources to read.",
+            "in": "query",
+            "name": "RatePlan",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Deprecated.",
+            "in": "query",
+            "name": "EId",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Only return Sim resources with this registration code.",
+            "in": "query",
+            "name": "SimRegistrationCode",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "How many resources to return in each list page. The default is 50, and the maximum is 1000.",
+            "in": "query",
+            "name": "PageSize",
+            "schema": {
+              "maximum": 1000,
+              "minimum": 1,
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "meta": {
+                      "properties": {
+                        "first_page_url": {
+                          "format": "uri",
+                          "type": "string"
+                        },
+                        "key": {
+                          "type": "string"
+                        },
+                        "next_page_url": {
+                          "format": "uri",
+                          "type": "string"
+                        },
+                        "page": {
+                          "type": "integer"
+                        },
+                        "page_size": {
+                          "type": "integer"
+                        },
+                        "previous_page_url": {
+                          "format": "uri",
+                          "type": "string"
+                        },
+                        "url": {
+                          "format": "uri",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "sims": {
+                      "items": {
+                        "$ref": "#/components/schemas/wireless.v1.sim"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "accountSid_authToken": []
+          }
+        ],
+        "tags": [
+          "GA"
+        ]
+      },
+      "servers": [
+        {
+          "url": "https://wireless.twilio.com"
+        }
+      ],
+      "x-default-output-properties": [
+        "sid",
+        "unique_name",
+        "friendly_name",
+        "status"
+      ],
+      "x-path-type": "list"
+    },
+    "/v1/Sims/{Sid}": {
+      "delete": {
+        "description": "Delete a Sim resource from your account.",
+        "parameters": [
+          {
+            "description": "The SID of the Sim resource to delete.",
+            "in": "path",
+            "name": "Sid",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "The resource was deleted successfully."
+          }
+        },
+        "security": [
+          {
+            "accountSid_authToken": []
+          }
+        ],
+        "tags": [
+          "GA"
+        ]
+      },
+      "description": "Individual wireless SIMs",
+      "get": {
+        "description": "Fetch a Sim resource from your account.",
+        "parameters": [
+          {
+            "description": "The SID of the Sim resource to fetch.",
+            "in": "path",
+            "name": "Sid",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/wireless.v1.sim"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "accountSid_authToken": []
+          }
+        ],
+        "tags": [
+          "GA"
+        ]
+      },
+      "post": {
+        "description": "Updates the given properties of a Sim resource from your account.",
+        "parameters": [
+          {
+            "description": "The SID of the Sim resource to update.",
+            "in": "path",
+            "name": "Sid",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "An application-defined string that uniquely identifies the resource. It can be used in place of the `sid` in the URL path to address the resource.",
+            "in": "query",
+            "name": "UniqueName",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The HTTP method we use to call `callback_url`. Can be: `POST` or `GET`, and the default is `POST`.",
+            "in": "query",
+            "name": "CallbackMethod",
+            "required": false,
+            "schema": {
+              "enum": [
+                "head",
+                "get",
+                "post",
+                "patch",
+                "put",
+                "delete",
+                "HEAD",
+                "GET",
+                "POST",
+                "PATCH",
+                "PUT",
+                "DELETE"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "The URL we call using the `callback_url` when the SIM has finished updating. When the SIM transitions from `new` to `ready` or from any status to `deactivated`, we call this URL when the status changes to an intermediate status (`ready` or `deactivated`) and again when the status changes to its final status (`active` or `canceled`).",
+            "in": "query",
+            "name": "CallbackUrl",
+            "required": false,
+            "schema": {
+              "format": "uri",
+              "type": "string"
+            }
+          },
+          {
+            "description": "A descriptive string that you create to describe the resource. It does not need to be unique.",
+            "in": "query",
+            "name": "FriendlyName",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The `sid` or `unique_name` of the [RatePlan resource](https://www.twilio.com/docs/wireless/api/rate-plan) that this SIM should use.",
+            "in": "query",
+            "name": "RatePlan",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The new status of the resource. Can be: `ready`, `active`, `suspended` or `deactivated`; however the SIM might support additional values.",
+            "in": "query",
+            "name": "Status",
+            "required": false,
+            "schema": {
+              "enum": [
+                "new",
+                "ready",
+                "active",
+                "suspended",
+                "deactivated",
+                "canceled",
+                "scheduled",
+                "updating"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "The HTTP method we use to call `commands_callback_url`.  Can be: `POST` or `GET`, and the default is `POST`.",
+            "in": "query",
+            "name": "CommandsCallbackMethod",
+            "required": false,
+            "schema": {
+              "enum": [
+                "head",
+                "get",
+                "post",
+                "patch",
+                "put",
+                "delete",
+                "HEAD",
+                "GET",
+                "POST",
+                "PATCH",
+                "PUT",
+                "DELETE"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "The URL we call using the `commands_callback_method` when the SIM originates a [Command](https://www.twilio.com/docs/wireless/api/commands). Your server should respond with an HTTP status code in the 200 range; any response body is ignored.",
+            "in": "query",
+            "name": "CommandsCallbackUrl",
+            "required": false,
+            "schema": {
+              "format": "uri",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The HTTP method we use to call `sms_fallback_url`. Can be: `GET` or `POST`.",
+            "in": "query",
+            "name": "SmsFallbackMethod",
+            "required": false,
+            "schema": {
+              "enum": [
+                "head",
+                "get",
+                "post",
+                "patch",
+                "put",
+                "delete",
+                "HEAD",
+                "GET",
+                "POST",
+                "PATCH",
+                "PUT",
+                "DELETE"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "The URL we call using the `sms_fallback_method` when an error occurs while retrieving or executing the TwiML requested from `sms_url`.",
+            "in": "query",
+            "name": "SmsFallbackUrl",
+            "required": false,
+            "schema": {
+              "format": "uri",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The HTTP method we use to call `sms_url`. Can be: `GET` or `POST`.",
+            "in": "query",
+            "name": "SmsMethod",
+            "required": false,
+            "schema": {
+              "enum": [
+                "head",
+                "get",
+                "post",
+                "patch",
+                "put",
+                "delete",
+                "HEAD",
+                "GET",
+                "POST",
+                "PATCH",
+                "PUT",
+                "DELETE"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "The URL we call using the `sms_method` when the SIM-connected device sends an SMS message that is not a [Command](https://www.twilio.com/docs/wireless/api/commands).",
+            "in": "query",
+            "name": "SmsUrl",
+            "required": false,
+            "schema": {
+              "format": "uri",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The HTTP method we use to call `voice_fallback_url`. Can be: `GET` or `POST`.",
+            "in": "query",
+            "name": "VoiceFallbackMethod",
+            "required": false,
+            "schema": {
+              "enum": [
+                "head",
+                "get",
+                "post",
+                "patch",
+                "put",
+                "delete",
+                "HEAD",
+                "GET",
+                "POST",
+                "PATCH",
+                "PUT",
+                "DELETE"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "The URL we call using the `voice_fallback_method` when an error occurs while retrieving or executing the TwiML requested from `voice_url`.",
+            "in": "query",
+            "name": "VoiceFallbackUrl",
+            "required": false,
+            "schema": {
+              "format": "uri",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The HTTP method we use when we call `voice_url`. Can be: `GET` or `POST`.",
+            "in": "query",
+            "name": "VoiceMethod",
+            "required": false,
+            "schema": {
+              "enum": [
+                "head",
+                "get",
+                "post",
+                "patch",
+                "put",
+                "delete",
+                "HEAD",
+                "GET",
+                "POST",
+                "PATCH",
+                "PUT",
+                "DELETE"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "The URL we call using the `voice_method` when the SIM-connected device makes a voice call.",
+            "in": "query",
+            "name": "VoiceUrl",
+            "required": false,
+            "schema": {
+              "format": "uri",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Initiate a connectivity reset on the SIM. Set to `resetting` to initiate a connectivity reset on the SIM. No other value is valid.",
+            "in": "query",
+            "name": "ResetStatus",
+            "required": false,
+            "schema": {
+              "enum": [
+                "resetting"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/wireless.v1.sim"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "accountSid_authToken": []
+          }
+        ],
+        "tags": [
+          "GA"
+        ]
+      },
+      "servers": [
+        {
+          "url": "https://wireless.twilio.com"
+        }
+      ],
+      "x-default-output-properties": [
+        "sid",
+        "unique_name",
+        "friendly_name",
+        "status"
+      ],
+      "x-path-type": "instance"
+    },
+    "/v1/Sims/{SimSid}/DataSessions": {
+      "description": "Data session information for SIMs",
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "description": "The SID of the [Sim resource](https://www.twilio.com/docs/wireless/api/sim) with the Data Sessions to read.",
+            "in": "path",
+            "name": "SimSid",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The date that the record ended, given as GMT in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format.",
+            "in": "query",
+            "name": "End",
+            "required": false,
+            "schema": {
+              "format": "date-time",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The date that the Data Session started, given as GMT in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format.",
+            "in": "query",
+            "name": "Start",
+            "required": false,
+            "schema": {
+              "format": "date-time",
+              "type": "string"
+            }
+          },
+          {
+            "description": "How many resources to return in each list page. The default is 50, and the maximum is 1000.",
+            "in": "query",
+            "name": "PageSize",
+            "schema": {
+              "maximum": 1000,
+              "minimum": 1,
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data_sessions": {
+                      "items": {
+                        "$ref": "#/components/schemas/wireless.v1.sim.data_session"
+                      },
+                      "type": "array"
+                    },
+                    "meta": {
+                      "properties": {
+                        "first_page_url": {
+                          "format": "uri",
+                          "type": "string"
+                        },
+                        "key": {
+                          "type": "string"
+                        },
+                        "next_page_url": {
+                          "format": "uri",
+                          "type": "string"
+                        },
+                        "page": {
+                          "type": "integer"
+                        },
+                        "page_size": {
+                          "type": "integer"
+                        },
+                        "previous_page_url": {
+                          "format": "uri",
+                          "type": "string"
+                        },
+                        "url": {
+                          "format": "uri",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "accountSid_authToken": []
+          }
+        ],
+        "tags": [
+          "GA"
+        ]
+      },
+      "servers": [
+        {
+          "url": "https://wireless.twilio.com"
+        }
+      ],
+      "x-default-output-properties": [
+        "sid",
+        "packets_uploaded",
+        "packets_downloaded",
+        "start",
+        "end"
+      ],
+      "x-path-type": "list"
+    },
+    "/v1/Sims/{SimSid}/UsageRecords": {
+      "description": "Usage information for SIMs",
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "description": "The SID of the [Sim resource](https://www.twilio.com/docs/wireless/api/sim)  to read the usage from.",
+            "in": "path",
+            "name": "SimSid",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Only include usage that occurred on or before this date, specified in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html).",
+            "in": "query",
+            "name": "End",
+            "required": false,
+            "schema": {
+              "format": "date-time",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Only include usage that has occurred on or after this date, specified in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html).",
+            "in": "query",
+            "name": "Start",
+            "required": false,
+            "schema": {
+              "format": "date-time",
+              "type": "string"
+            }
+          },
+          {
+            "description": "How to summarize the usage by time. Can be: `daily`, `hourly`, or `all`. A value of `all` returns one Usage Record that describes the usage for the entire period.",
+            "in": "query",
+            "name": "Granularity",
+            "required": false,
+            "schema": {
+              "enum": [
+                "hourly",
+                "daily",
+                "all"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "How many resources to return in each list page. The default is 50, and the maximum is 1000.",
+            "in": "query",
+            "name": "PageSize",
+            "schema": {
+              "maximum": 1000,
+              "minimum": 1,
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "meta": {
+                      "properties": {
+                        "first_page_url": {
+                          "format": "uri",
+                          "type": "string"
+                        },
+                        "key": {
+                          "type": "string"
+                        },
+                        "next_page_url": {
+                          "format": "uri",
+                          "type": "string"
+                        },
+                        "page": {
+                          "type": "integer"
+                        },
+                        "page_size": {
+                          "type": "integer"
+                        },
+                        "previous_page_url": {
+                          "format": "uri",
+                          "type": "string"
+                        },
+                        "url": {
+                          "format": "uri",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "usage_records": {
+                      "items": {
+                        "$ref": "#/components/schemas/wireless.v1.sim.usage_record"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "accountSid_authToken": []
+          }
+        ],
+        "tags": [
+          "GA"
+        ]
+      },
+      "servers": [
+        {
+          "url": "https://wireless.twilio.com"
+        }
+      ],
+      "x-default-output-properties": [
+        "period"
+      ],
+      "x-path-type": "list"
+    },
+    "/v1/UsageRecords": {
+      "description": "Aggregated Usage information for all SIMs on an Account",
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "description": "Only include usage that has occurred on or before this date. Format is [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html).",
+            "in": "query",
+            "name": "End",
+            "required": false,
+            "schema": {
+              "format": "date-time",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Only include usage that has occurred on or after this date. Format is [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html).",
+            "in": "query",
+            "name": "Start",
+            "required": false,
+            "schema": {
+              "format": "date-time",
+              "type": "string"
+            }
+          },
+          {
+            "description": "How to summarize the usage by time. Can be: `daily`, `hourly`, or `all`. A value of `all` returns one Usage Record that describes the usage for the entire period.",
+            "in": "query",
+            "name": "Granularity",
+            "required": false,
+            "schema": {
+              "enum": [
+                "hourly",
+                "daily",
+                "all"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "How many resources to return in each list page. The default is 50, and the maximum is 1000.",
+            "in": "query",
+            "name": "PageSize",
+            "schema": {
+              "maximum": 1000,
+              "minimum": 1,
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "meta": {
+                      "properties": {
+                        "first_page_url": {
+                          "format": "uri",
+                          "type": "string"
+                        },
+                        "key": {
+                          "type": "string"
+                        },
+                        "next_page_url": {
+                          "format": "uri",
+                          "type": "string"
+                        },
+                        "page": {
+                          "type": "integer"
+                        },
+                        "page_size": {
+                          "type": "integer"
+                        },
+                        "previous_page_url": {
+                          "format": "uri",
+                          "type": "string"
+                        },
+                        "url": {
+                          "format": "uri",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "usage_records": {
+                      "items": {
+                        "$ref": "#/components/schemas/wireless.v1.account_usage_record"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "accountSid_authToken": []
+          }
+        ],
+        "tags": [
+          "GA"
+        ]
+      },
+      "servers": [
+        {
+          "url": "https://wireless.twilio.com"
+        }
+      ],
+      "x-default-output-properties": [
+        "period"
+      ],
+      "x-path-type": "list"
+    }
+  },
+  "tags": [
+    {
+      "description": "This product is Generally Available.",
+      "name": "GA"
+    }
+  ]
+}

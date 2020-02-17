@@ -1,0 +1,532 @@
+{
+  "/2010-04-01/Accounts.json": {
+    "name": "Projects and subaccount",
+    "resource": "Account",
+    "description": "Twilio accounts (aka Project) or subaccounts"
+  },
+  "/2010-04-01/Accounts/{AccountSid}/Addresses.json": {
+    "name": "Addresses",
+    "resource": "Addresses list",
+    "description": "An Address instance resource represents your or your customerâ€™s physical location within a country. Around the world, some local authorities require the name and address of the user to be on file with Twilio to purchase and own a phone number."
+  },
+  "/2010-04-01/Accounts/{AccountSid}/Addresses/{AddressSid}/DependentPhoneNumbers.json": {
+    "name": "Phone number associated to Address",
+    "resource": "Phone Number",
+    "description": "Phone numbers dependent on an Address resource"
+  },
+  "/2010-04-01/Accounts/{AccountSid}/Addresses/{Sid}.json": {
+    "name": "Address",
+    "resource": "Address",
+    "description": "An Address instance resource represents your or your customerâ€™s physical location within a country. Around the world, some local authorities require the name and address of the user to be on file with Twilio to purchase and own a phone number."
+  },
+  "/2010-04-01/Accounts/{AccountSid}/Applications.json": {
+    "name": "Applications",
+    "resource": "Applications list",
+    "description": "An Application instance resource represents an application that you have created with Twilio. An application inside of Twilio is just a set of URLs and other configuration data that tells Twilio how to behave when one of your Twilio numbers receives a call or SMS message."
+  },
+  "/2010-04-01/Accounts/{AccountSid}/Applications/{Sid}.json": {
+    "name": "Application",
+    "resource": "Application",
+    "description": "An Application instance resource represents an application that you have created with Twilio. An application inside of Twilio is just a set of URLs and other configuration data that tells Twilio how to behave when one of your Twilio numbers receives a call or SMS message."
+  },
+  "/2010-04-01/Accounts/{AccountSid}/AuthorizedConnectApps.json": {
+    "name": "Connect Apps",
+    "resource": "Apps",
+    "description": "Authorized Twilio Connect apps"
+  },
+  "/2010-04-01/Accounts/{AccountSid}/AuthorizedConnectApps/{ConnectAppSid}.json": {
+    "name": "Connect App",
+    "resource": "App",
+    "description": "Authorized Twilio Connect apps"
+  },
+  "/2010-04-01/Accounts/{AccountSid}/AvailablePhoneNumbers.json": {
+    "name": "Phone Numbers",
+    "resource": "Phone Numbers list",
+    "description": "Country codes with available phone numbers"
+  },
+  "/2010-04-01/Accounts/{AccountSid}/AvailablePhoneNumbers/{CountryCode}.json": {
+    "name": "Phone Numbers (by Country Code)",
+    "resource": "Phone Numbers",
+    "description": "Country codes with available phone numbers"
+  },
+  "/2010-04-01/Accounts/{AccountSid}/AvailablePhoneNumbers/{CountryCode}/Local.json": {
+    "name": "Local Phone Numbers (by Country Code)",
+    "resource": "Phone Numbers",
+    "description": "Available local phone numbers"
+  },
+  "/2010-04-01/Accounts/{AccountSid}/AvailablePhoneNumbers/{CountryCode}/MachineToMachine.json": {
+    "name": "Machine to Machine Numbers (by Country Code)",
+    "resource": "Phone Numbers",
+    "description": "Available machine-to-machine phone numbers"
+  },
+  "/2010-04-01/Accounts/{AccountSid}/AvailablePhoneNumbers/{CountryCode}/Mobile.json": {
+    "name": "Mobile Phone Numbers (by Country code)",
+    "resource": "Phone Numbers",
+    "description": "Available mobile phone numbers"
+  },
+  "/2010-04-01/Accounts/{AccountSid}/AvailablePhoneNumbers/{CountryCode}/National.json": {
+    "name": "National Phone Numbers (by Country code)",
+    "resource": "Phone Numbers",
+    "description": "Available national phone numbers"
+  },
+  "/2010-04-01/Accounts/{AccountSid}/AvailablePhoneNumbers/{CountryCode}/SharedCost.json": {
+    "name": "Shared Cost Phone Numbers (by Country Code)",
+    "resource": "Phone Numbers",
+    "description": "Available shared cost numbers"
+  },
+  "/2010-04-01/Accounts/{AccountSid}/AvailablePhoneNumbers/{CountryCode}/TollFree.json": {
+    "name": "Toll Free Numbers (by Country Code)",
+    "resource": "Phone Numbers",
+    "description": "Available toll free phone numbers"
+  },
+  "/2010-04-01/Accounts/{AccountSid}/AvailablePhoneNumbers/{CountryCode}/Voip.json": {
+    "name": "VOIP Numbers",
+    "resource": "Phone Numbers",
+    "description": "Available VoIP phone numbers"
+  },
+  "/2010-04-01/Accounts/{AccountSid}/Balance.json": {
+    "name": "",
+    "resource": "",
+    "description": "Account balance"
+  },
+  "/2010-04-01/Accounts/{AccountSid}/Calls.json": {
+    "name": "",
+    "resource": "",
+    "description": "A Call is an object that represents a connection between a telephone and Twilio."
+  },
+  "/2010-04-01/Accounts/{AccountSid}/Calls/FeedbackSummary.json": {
+    "name": "",
+    "resource": "",
+    "description": "Call FeedbackSummary resources provide an idea of how your end userâ€™s perceive the quality of their calls and the most common issues they have encountered in the context of all your voice traffic during a specific time frame."
+  },
+  "/2010-04-01/Accounts/{AccountSid}/Calls/FeedbackSummary/{Sid}.json": {
+    "name": "",
+    "resource": "",
+    "description": "Call FeedbackSummary resources provide an idea of how your end userâ€™s perceive the quality of their calls and the most common issues they have encountered in the context of all your voice traffic during a specific time frame."
+  },
+  "/2010-04-01/Accounts/{AccountSid}/Calls/{CallSid}/Feedback.json": {
+    "name": "",
+    "resource": "",
+    "description": "The call Feedback subresource describes the quality experienced during a phone call."
+  },
+  "/2010-04-01/Accounts/{AccountSid}/Calls/{CallSid}/Notifications.json": {
+    "name": "",
+    "resource": "",
+    "description": "Error notifications for calls"
+  },
+  "/2010-04-01/Accounts/{AccountSid}/Calls/{CallSid}/Notifications/{Sid}.json": {
+    "name": "",
+    "resource": "",
+    "description": "Error notifications for calls"
+  },
+  "/2010-04-01/Accounts/{AccountSid}/Calls/{CallSid}/Recordings.json": {
+    "name": "",
+    "resource": "",
+    "description": "A Recording resource represents the recording associated with a voice call, conference, or SIP Trunk."
+  },
+  "/2010-04-01/Accounts/{AccountSid}/Calls/{CallSid}/Recordings/{Sid}.json": {
+    "name": "",
+    "resource": "",
+    "description": "A Recording resource represents the recording associated with a voice call, conference, or SIP Trunk."
+  },
+  "/2010-04-01/Accounts/{AccountSid}/Calls/{Sid}.json": {
+    "name": "",
+    "resource": "",
+    "description": "A Call is an object that represents a connection between a telephone and Twilio."
+  },
+  "/2010-04-01/Accounts/{AccountSid}/Conferences.json": {
+    "name": "",
+    "resource": "",
+    "description": "Voice call conferences"
+  },
+  "/2010-04-01/Accounts/{AccountSid}/Conferences/{ConferenceSid}/Participants.json": {
+    "name": "",
+    "resource": "",
+    "description": "Conference participants"
+  },
+  "/2010-04-01/Accounts/{AccountSid}/Conferences/{ConferenceSid}/Participants/{CallSid}.json": {
+    "name": "",
+    "resource": "",
+    "description": "Conference participants"
+  },
+  "/2010-04-01/Accounts/{AccountSid}/Conferences/{ConferenceSid}/Recordings.json": {
+    "name": "",
+    "resource": "",
+    "description": "Recordings of conferences"
+  },
+  "/2010-04-01/Accounts/{AccountSid}/Conferences/{ConferenceSid}/Recordings/{Sid}.json": {
+    "name": "",
+    "resource": "",
+    "description": "Recordings of conferences"
+  },
+  "/2010-04-01/Accounts/{AccountSid}/Conferences/{Sid}.json": {
+    "name": "",
+    "resource": "",
+    "description": "Voice call conferences"
+  },
+  "/2010-04-01/Accounts/{AccountSid}/ConnectApps.json": {
+    "name": "",
+    "resource": "",
+    "description": "Twilio Connect apps"
+  },
+  "/2010-04-01/Accounts/{AccountSid}/ConnectApps/{Sid}.json": {
+    "name": "",
+    "resource": "",
+    "description": "Twilio Connect apps"
+  },
+  "/2010-04-01/Accounts/{AccountSid}/IncomingPhoneNumbers.json": {
+    "name": "",
+    "resource": "",
+    "description": "Incoming phone numbers on a Twilio account/project"
+  },
+  "/2010-04-01/Accounts/{AccountSid}/IncomingPhoneNumbers/Local.json": {
+    "name": "",
+    "resource": "",
+    "description": "Incoming local phone numbers on a Twilio account/project"
+  },
+  "/2010-04-01/Accounts/{AccountSid}/IncomingPhoneNumbers/Mobile.json": {
+    "name": "",
+    "resource": "",
+    "description": "Incoming mobile phone numbers on a Twilio account/project"
+  },
+  "/2010-04-01/Accounts/{AccountSid}/IncomingPhoneNumbers/TollFree.json": {
+    "name": "",
+    "resource": "",
+    "description": "Incoming toll free phone numbers on a Twilio account/project"
+  },
+  "/2010-04-01/Accounts/{AccountSid}/IncomingPhoneNumbers/{ResourceSid}/AssignedAddOns.json": {
+    "name": "",
+    "resource": "",
+    "description": "TODO: Resource-level docs"
+  },
+  "/2010-04-01/Accounts/{AccountSid}/IncomingPhoneNumbers/{ResourceSid}/AssignedAddOns/{AssignedAddOnSid}/Extensions.json": {
+    "name": "",
+    "resource": "",
+    "description": "TODO: Resource-level docs"
+  },
+  "/2010-04-01/Accounts/{AccountSid}/IncomingPhoneNumbers/{ResourceSid}/AssignedAddOns/{AssignedAddOnSid}/Extensions/{Sid}.json": {
+    "name": "",
+    "resource": "",
+    "description": "TODO: Resource-level docs"
+  },
+  "/2010-04-01/Accounts/{AccountSid}/IncomingPhoneNumbers/{ResourceSid}/AssignedAddOns/{Sid}.json": {
+    "name": "",
+    "resource": "",
+    "description": "TODO: Resource-level docs"
+  },
+  "/2010-04-01/Accounts/{AccountSid}/IncomingPhoneNumbers/{Sid}.json": {
+    "name": "",
+    "resource": "",
+    "description": "Incoming phone numbers on a Twilio account/project"
+  },
+  "/2010-04-01/Accounts/{AccountSid}/Keys.json": {
+    "name": "",
+    "resource": "",
+    "description": "API keys"
+  },
+  "/2010-04-01/Accounts/{AccountSid}/Keys/{Sid}.json": {
+    "name": "",
+    "resource": "",
+    "description": "API keys"
+  },
+  "/2010-04-01/Accounts/{AccountSid}/Messages.json": {
+    "name": "",
+    "resource": "",
+    "description": "A Message resource represents an inbound or outbound message."
+  },
+  "/2010-04-01/Accounts/{AccountSid}/Messages/{MessageSid}/Feedback.json": {
+    "name": "",
+    "resource": "",
+    "description": "Customer-provided feedback on delivery confirmation"
+  },
+  "/2010-04-01/Accounts/{AccountSid}/Messages/{MessageSid}/Media.json": {
+    "name": "",
+    "resource": "",
+    "description": "The Media resource represents a piece of media, such as an image, that is associated with a message."
+  },
+  "/2010-04-01/Accounts/{AccountSid}/Messages/{MessageSid}/Media/{Sid}.json": {
+    "name": "",
+    "resource": "",
+    "description": "The Media resource represents a piece of media, such as an image, that is associated with a message."
+  },
+  "/2010-04-01/Accounts/{AccountSid}/Messages/{Sid}.json": {
+    "name": "",
+    "resource": "",
+    "description": "A Message resource represents an inbound or outbound message."
+  },
+  "/2010-04-01/Accounts/{AccountSid}/Notifications.json": {
+    "name": "",
+    "resource": "",
+    "description": "[DEPRECATED] Log entries"
+  },
+  "/2010-04-01/Accounts/{AccountSid}/Notifications/{Sid}.json": {
+    "name": "",
+    "resource": "",
+    "description": "[DEPRECATED] Log entries"
+  },
+  "/2010-04-01/Accounts/{AccountSid}/OutgoingCallerIds.json": {
+    "name": "",
+    "resource": "",
+    "description": "An OutgoingCallerId resource represents a single verified number that may be used as a caller ID when making outgoing calls via the REST API and within the TwiML <Dial> verb."
+  },
+  "/2010-04-01/Accounts/{AccountSid}/OutgoingCallerIds/{Sid}.json": {
+    "name": "",
+    "resource": "",
+    "description": "An OutgoingCallerId resource represents a single verified number that may be used as a caller ID when making outgoing calls via the REST API and within the TwiML <Dial> verb."
+  },
+  "/2010-04-01/Accounts/{AccountSid}/Queues.json": {
+    "name": "",
+    "resource": "",
+    "description": "Queues of calls"
+  },
+  "/2010-04-01/Accounts/{AccountSid}/Queues/{QueueSid}/Members.json": {
+    "name": "",
+    "resource": "",
+    "description": "Calls in a call queue"
+  },
+  "/2010-04-01/Accounts/{AccountSid}/Queues/{QueueSid}/Members/{CallSid}.json": {
+    "name": "",
+    "resource": "",
+    "description": "Calls in a call queue"
+  },
+  "/2010-04-01/Accounts/{AccountSid}/Queues/{Sid}.json": {
+    "name": "",
+    "resource": "",
+    "description": "Queues of calls"
+  },
+  "/2010-04-01/Accounts/{AccountSid}/Recordings.json": {
+    "name": "",
+    "resource": "",
+    "description": "Recordings of phone calls"
+  },
+  "/2010-04-01/Accounts/{AccountSid}/Recordings/{RecordingSid}/Transcriptions.json": {
+    "name": "",
+    "resource": "",
+    "description": "References to text transcriptions of call recordings"
+  },
+  "/2010-04-01/Accounts/{AccountSid}/Recordings/{RecordingSid}/Transcriptions/{Sid}.json": {
+    "name": "",
+    "resource": "",
+    "description": "References to text transcriptions of call recordings"
+  },
+  "/2010-04-01/Accounts/{AccountSid}/Recordings/{ReferenceSid}/AddOnResults.json": {
+    "name": "",
+    "resource": "",
+    "description": "The results of an Add-on API call"
+  },
+  "/2010-04-01/Accounts/{AccountSid}/Recordings/{ReferenceSid}/AddOnResults/{AddOnResultSid}/Payloads.json": {
+    "name": "",
+    "resource": "",
+    "description": "A single Add-on results' payload"
+  },
+  "/2010-04-01/Accounts/{AccountSid}/Recordings/{ReferenceSid}/AddOnResults/{AddOnResultSid}/Payloads/{Sid}.json": {
+    "name": "",
+    "resource": "",
+    "description": "A single Add-on results' payload"
+  },
+  "/2010-04-01/Accounts/{AccountSid}/Recordings/{ReferenceSid}/AddOnResults/{Sid}.json": {
+    "name": "",
+    "resource": "",
+    "description": "The results of an Add-on API call"
+  },
+  "/2010-04-01/Accounts/{AccountSid}/Recordings/{Sid}.json": {
+    "name": "",
+    "resource": "",
+    "description": "Recordings of phone calls"
+  },
+  "/2010-04-01/Accounts/{AccountSid}/SIP/CredentialLists.json": {
+    "name": "",
+    "resource": "",
+    "description": "Lists of SIP credentials"
+  },
+  "/2010-04-01/Accounts/{AccountSid}/SIP/CredentialLists/{CredentialListSid}/Credentials.json": {
+    "name": "",
+    "resource": "",
+    "description": "Username and password information for SIP Domains"
+  },
+  "/2010-04-01/Accounts/{AccountSid}/SIP/CredentialLists/{CredentialListSid}/Credentials/{Sid}.json": {
+    "name": "",
+    "resource": "",
+    "description": "Username and password information for SIP Domains"
+  },
+  "/2010-04-01/Accounts/{AccountSid}/SIP/CredentialLists/{Sid}.json": {
+    "name": "",
+    "resource": "",
+    "description": "Lists of SIP credentials"
+  },
+  "/2010-04-01/Accounts/{AccountSid}/SIP/Domains.json": {
+    "name": "",
+    "resource": "",
+    "description": "Custom DNS hostnames that can accept SIP traffic"
+  },
+  "/2010-04-01/Accounts/{AccountSid}/SIP/Domains/{DomainSid}/Auth/Calls/CredentialListMappings.json": {
+    "name": "",
+    "resource": "",
+    "description": "Credential lists for SIP calls"
+  },
+  "/2010-04-01/Accounts/{AccountSid}/SIP/Domains/{DomainSid}/Auth/Calls/CredentialListMappings/{Sid}.json": {
+    "name": "",
+    "resource": "",
+    "description": "Credential lists for SIP calls"
+  },
+  "/2010-04-01/Accounts/{AccountSid}/SIP/Domains/{DomainSid}/Auth/Calls/IpAccessControlListMappings.json": {
+    "name": "",
+    "resource": "",
+    "description": "IP address lists for SIP calls"
+  },
+  "/2010-04-01/Accounts/{AccountSid}/SIP/Domains/{DomainSid}/Auth/Calls/IpAccessControlListMappings/{Sid}.json": {
+    "name": "",
+    "resource": "",
+    "description": "IP address lists for SIP calls"
+  },
+  "/2010-04-01/Accounts/{AccountSid}/SIP/Domains/{DomainSid}/Auth/Registrations/CredentialListMappings.json": {
+    "name": "",
+    "resource": "",
+    "description": "Credential lists for SIP registrations"
+  },
+  "/2010-04-01/Accounts/{AccountSid}/SIP/Domains/{DomainSid}/Auth/Registrations/CredentialListMappings/{Sid}.json": {
+    "name": "",
+    "resource": "",
+    "description": "Credential lists for SIP registrations"
+  },
+  "/2010-04-01/Accounts/{AccountSid}/SIP/Domains/{DomainSid}/CredentialListMappings.json": {
+    "name": "",
+    "resource": "",
+    "description": "Credential lists associated with a SIP Domain"
+  },
+  "/2010-04-01/Accounts/{AccountSid}/SIP/Domains/{DomainSid}/CredentialListMappings/{Sid}.json": {
+    "name": "",
+    "resource": "",
+    "description": "Credential lists associated with a SIP Domain"
+  },
+  "/2010-04-01/Accounts/{AccountSid}/SIP/Domains/{DomainSid}/IpAccessControlListMappings.json": {
+    "name": "",
+    "resource": "",
+    "description": "Access control lists associated with a SIP Domain"
+  },
+  "/2010-04-01/Accounts/{AccountSid}/SIP/Domains/{DomainSid}/IpAccessControlListMappings/{Sid}.json": {
+    "name": "",
+    "resource": "",
+    "description": "Access control lists associated with a SIP Domain"
+  },
+  "/2010-04-01/Accounts/{AccountSid}/SIP/Domains/{Sid}.json": {
+    "name": "",
+    "resource": "",
+    "description": "Custom DNS hostnames that can accept SIP traffic"
+  },
+  "/2010-04-01/Accounts/{AccountSid}/SIP/IpAccessControlLists.json": {
+    "name": "",
+    "resource": "",
+    "description": "Access control lists of IP address resources"
+  },
+  "/2010-04-01/Accounts/{AccountSid}/SIP/IpAccessControlLists/{IpAccessControlListSid}/IpAddresses.json": {
+    "name": "",
+    "resource": "",
+    "description": "IP addresses that have access to a SIP Domain"
+  },
+  "/2010-04-01/Accounts/{AccountSid}/SIP/IpAccessControlLists/{IpAccessControlListSid}/IpAddresses/{Sid}.json": {
+    "name": "",
+    "resource": "",
+    "description": "IP addresses that have access to a SIP Domain"
+  },
+  "/2010-04-01/Accounts/{AccountSid}/SIP/IpAccessControlLists/{Sid}.json": {
+    "name": "",
+    "resource": "",
+    "description": "Access control lists of IP address resources"
+  },
+  "/2010-04-01/Accounts/{AccountSid}/SMS/ShortCodes.json": {
+    "name": "",
+    "resource": "",
+    "description": "Messaging short codes"
+  },
+  "/2010-04-01/Accounts/{AccountSid}/SMS/ShortCodes/{Sid}.json": {
+    "name": "",
+    "resource": "",
+    "description": "Messaging short codes"
+  },
+  "/2010-04-01/Accounts/{AccountSid}/SigningKeys.json": {
+    "name": "",
+    "resource": "",
+    "description": "Create a new signing key"
+  },
+  "/2010-04-01/Accounts/{AccountSid}/SigningKeys/{Sid}.json": {
+    "name": "",
+    "resource": "",
+    "description": "TODO: Resource-level docs"
+  },
+  "/2010-04-01/Accounts/{AccountSid}/Tokens.json": {
+    "name": "",
+    "resource": "",
+    "description": "Credentials for ICE servers"
+  },
+  "/2010-04-01/Accounts/{AccountSid}/Transcriptions.json": {
+    "name": "",
+    "resource": "",
+    "description": "Text transcriptions of call recordings"
+  },
+  "/2010-04-01/Accounts/{AccountSid}/Transcriptions/{Sid}.json": {
+    "name": "",
+    "resource": "",
+    "description": "Text transcriptions of call recordings"
+  },
+  "/2010-04-01/Accounts/{AccountSid}/Usage/Records.json": {
+    "name": "",
+    "resource": "",
+    "description": "Twilio account usage records"
+  },
+  "/2010-04-01/Accounts/{AccountSid}/Usage/Records/AllTime.json": {
+    "name": "",
+    "resource": "",
+    "description": "Usage records for all time"
+  },
+  "/2010-04-01/Accounts/{AccountSid}/Usage/Records/Daily.json": {
+    "name": "",
+    "resource": "",
+    "description": "Usage records summarized by day"
+  },
+  "/2010-04-01/Accounts/{AccountSid}/Usage/Records/LastMonth.json": {
+    "name": "",
+    "resource": "",
+    "description": "Usage records for last month"
+  },
+  "/2010-04-01/Accounts/{AccountSid}/Usage/Records/Monthly.json": {
+    "name": "",
+    "resource": "",
+    "description": "Usage records summarized by month"
+  },
+  "/2010-04-01/Accounts/{AccountSid}/Usage/Records/ThisMonth.json": {
+    "name": "",
+    "resource": "",
+    "description": "Usage records for this month"
+  },
+  "/2010-04-01/Accounts/{AccountSid}/Usage/Records/Today.json": {
+    "name": "",
+    "resource": "",
+    "description": "Usage records for today"
+  },
+  "/2010-04-01/Accounts/{AccountSid}/Usage/Records/Yearly.json": {
+    "name": "",
+    "resource": "",
+    "description": "Usage records summarized by year"
+  },
+  "/2010-04-01/Accounts/{AccountSid}/Usage/Records/Yesterday.json": {
+    "name": "",
+    "resource": "",
+    "description": "Usage records for yesterday"
+  },
+  "/2010-04-01/Accounts/{AccountSid}/Usage/Triggers.json": {
+    "name": "",
+    "resource": "",
+    "description": "Webhooks that notify you of usage thresholds"
+  },
+  "/2010-04-01/Accounts/{AccountSid}/Usage/Triggers/{Sid}.json": {
+    "name": "",
+    "resource": "",
+    "description": "Webhooks that notify you of usage thresholds"
+  },
+  "/2010-04-01/Accounts/{Sid}.json": {
+    "name": "",
+    "resource": "",
+    "description": "Twilio accounts (aka Project) or subaccounts"
+  }
+}
