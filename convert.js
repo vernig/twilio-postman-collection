@@ -65,28 +65,42 @@ function createRequests(apiRequests, path) {
   return tmpRequests;
 }
 
-var postmanOutput = {};
-const apiSource = JSON.parse(fs.readFileSync('./src/twilio_api.json'));
-const apiPaths = apiSource.paths;
-const pathsToFolders = JSON.parse(fs.readFileSync('./paths.json'));
-
-postmanOutput.info = {
-  name: 'Twilio REST API',
-  version: {},
-  schema:
-    'https://schema.getpostman.com/json/collection/v2.1.0/collection.json',
-  description:
-    'This is the public Twilio REST API.\n\nContact Support:\n Name: Twilio Support\n Email: support@twilio.com'
+const postmanOutput = {
+  info: {
+    name: 'Twilio REST API',
+    version: {},
+    schema:
+      'https://schema.getpostman.com/json/collection/v2.1.0/collection.json',
+    description:
+      'This is the public Twilio REST API.\n\nContact Support:\n Name: Twilio Support\n Email: support@twilio.com'
+  },
+  items: []
 };
-postmanOutput.items = [];
-for (path in apiPaths) {
-  console.log(`Processing ${path}`);
-  let tmpFolder = {};
-  tmpFolder.name = pathsToFolders[path].name;
-  if (tmpFolder.name) {
-    tmpFolder.item = createRequests(apiPaths[path], path);
-    postmanOutput.items.push(tmpFolder);
+
+const apiFiles = fs.readdirSync('./src');
+apiFiles.forEach(apiFile => {
+  let apiSource = JSON.parse(fs.readFileSync('./src/' + apiFile));
+  let apiPaths = apiSource.paths;
+  let productName = apiFile
+    .replace('twilio_', '')
+    .replace('.json', '')
+    .replace('twilio-', '');
+  // const pathsToFolders = JSON.parse(fs.readFileSync('./paths.json'));
+
+  
+  for (path in apiPaths) {
+    console.log(`Processing ${path}`);
+    let tmpFolder = {};
+    tmpFolder.name = pathsToFolders[path].name;
+    if (tmpFolder.name) {
+      tmpFolder.item = createRequests(apiPaths[path], path);
+      postmanOutput.items.push(tmpFolder);
+    }
   }
-}
-console.log('\nStoring result to Twilio.postman_collection.json')
-fs.writeFileSync('./Twilio.postman_collection.json', JSON.stringify(postmanOutput));
+});
+
+console.log('\nStoring result to Twilio.postman_collection.json');
+fs.writeFileSync(
+  './Twilio.postman_collection.json',
+  JSON.stringify(postmanOutput)
+);
