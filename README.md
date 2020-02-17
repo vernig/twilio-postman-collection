@@ -1,6 +1,6 @@
 # 🚧🚧Twilio APIs Postman Collection
 
-Unofficial / Incomplete collection of Twilio APIs for Postman. 
+Currently only `Fetch` (GETs) API request are implemented. The rest are in roadmap. 
 
 ## Installation 
 
@@ -29,3 +29,17 @@ You can add all your accounts using the Postman Environment:
 Now everytime you need to use this credential, use the dropdown list in the top right of Postman Window: 
 
 ![image](https://user-images.githubusercontent.com/54728384/71095523-aaac6780-21a4-11ea-84eb-ebb19cec6294.png)
+
+## Contributing
+
+This repo is using the script `convert.js` to convert the API definitions defined in [this repo](https://github.com/twilio/twilio-cli-core/tree/master/src/services/twilio-api). Since these files are in Open API format, they could be directly imported in Postman; the problem is that postman create folders based on URL folder, which is not an effective way with Twilio APIs. 
+
+The script is: 
+* Processing each file in `src` folder. It uses the file name to create the name of the folder in Postman 
+* Each `path` in the source file is used to create a subfolder of request 
+* Each request is named using: `<method> + <resource>`. So for example a `GET` to an `account` is named as `Fetch account`
+
+To generate a new output file use: 
+```
+node convert.js
+```
