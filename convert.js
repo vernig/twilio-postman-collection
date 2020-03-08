@@ -8,7 +8,12 @@ function getAPINameFromPath(path) {
   return pathElements.join(' ').replace(/[A-Z]/g, element => ' ' + element);
 }
 
-function createGetRequestInfo(apiRequest, path) {
+function convertServerToHost(servers) {
+  let server = servers[0].url
+  return server.split('//')[1].split('.')
+}
+
+function createGetRequestInfo(apiRequest, host, path) {
   let tmpRequestInfo = {};
   let pathVariables = [];
   let variableNameRegex = /{(.*)}/;
@@ -36,7 +41,7 @@ function createGetRequestInfo(apiRequest, path) {
   });
 
   tmpRequestInfo.url.protocol = 'https';
-  tmpRequestInfo.url.host = ['api', 'twilio', 'com'];
+  tmpRequestInfo.url.host = host
   tmpRequestInfo.url.query = [];
   apiRequest.parameters.forEach(parameter => {
     if (pathVariables.indexOf(parameter.name) == -1) {
@@ -60,11 +65,12 @@ function createGetRequestInfo(apiRequest, path) {
 }
 
 function createRequests(apiRequests, path) {
+  let host = convertServerToHost(apiRequests.servers)
   let tmpRequests = [];
   if (apiRequests.get) {
     let tmpPostmanRequest = {};
     tmpPostmanRequest.name = 'Fetch ' + getAPINameFromPath(path).toLowerCase();
-    tmpPostmanRequest.request = createGetRequestInfo(apiRequests.get, path);
+    tmpPostmanRequest.request = createGetRequestInfo(apiRequests.get, host, path);
     tmpRequests.push(tmpPostmanRequest);
   }
   // TODO;
