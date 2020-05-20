@@ -5,6 +5,11 @@ function getAPINameFromPath(path) {
   let pathElements = path.split('/');
   pathElements.splice(0, 2); // Remove first element (empty string) and API version ('2010-04-01')
   pathElements = pathElements.filter((element) => element.indexOf('{') === -1); // Remove parameters
+  if (pathElements[0] === 'Accounts' && pathElements.length > 1) {
+    // Most of the main API are under `/Accounts` path. To make the API more readable 
+    // in Postman, we are removing the "Accounts" from the API name / description
+    pathElements.splice(0,1)
+  }
   return pathElements.join(' ').replace(/[A-Z]/g, (element) => ' ' + element);
 }
 
