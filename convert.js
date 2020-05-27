@@ -22,7 +22,6 @@ function createGetRequestInfo(apiRequest, host, path) {
   let tmpRequestInfo = {};
   let pathVariables = [];
   let variableNameRegex = /{(.*)}/;
-  tmpRequestInfo.name = 'Fetch ' + getAPINameFromPath(path).toLowerCase();
   tmpRequestInfo.url = {};
 
   // Process Path
@@ -77,7 +76,7 @@ function createRequests(apiRequests, path) {
   let tmpRequests = [];
   if (apiRequests.get) {
     let tmpPostmanRequest = {};
-    tmpPostmanRequest.name = 'Fetch ' + getAPINameFromPath(path).toLowerCase();
+    tmpPostmanRequest.name = apiRequests.get.description || 'Fetch ' + getAPINameFromPath(path).toLowerCase();
     tmpPostmanRequest.request = createGetRequestInfo(
       apiRequests.get,
       host,
