@@ -10,7 +10,7 @@ function getAPINameFromPath(path) {
     // in Postman, we are removing the "Accounts" from the API name / description
     pathElements.splice(0,1)
   }
-  return pathElements.join(' ').replace(/[A-Z]/g, (element) => ' ' + element);
+  return pathElements.join(' ').replace(/[A-Z]+/g, (element) => ' ' + element);
 }
 
 function convertServerToHost(servers) {
@@ -140,10 +140,21 @@ fs.readdirSync('./twilio-api/')
 
     for (path in apiPaths) {
       console.log(`  Processing ${path}`);
-      let tmpFolder = {};
-      tmpFolder.name = getAPINameFromPath(path);
-      tmpFolder.item = createRequests(apiPaths[path], path);
-      productFolder.items.push(tmpFolder);
+      subFolderName = getAPINameFromPath(path);
+      subFolderRequests = createRequests(apiPaths[path], path)
+      if (productFolder.items.length && productFolder.items[productFolder.items.length -1 ].name === subFolderName) {
+        // Usually API that requests a specific resource (by SID) are following API that requests 
+        // all available resources (see for example /Credentials/AWS and Credentials/AWS/:Sid)
+        // In this case we group them together in the same folder
+        productFolder.items[productFolder.items.length -1 ].item.push(...subFolderRequests)
+      } else {
+
+        let subFolder = {
+          name: subFolderName, 
+          item: subFolderRequests
+        }
+        previousFolderIndex = productFolder.items.push(subFolder);
+      }
     }
 
     postmanOutput.items.push(productFolder);
