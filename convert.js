@@ -6,9 +6,9 @@ function getAPINameFromPath(path) {
   pathElements.splice(0, 2); // Remove first element (empty string) and API version ('2010-04-01')
   pathElements = pathElements.filter((element) => element.indexOf('{') === -1); // Remove parameters
   if (pathElements[0] === 'Accounts' && pathElements.length > 1) {
-    // Most of the main API are under `/Accounts` path. To make the API more readable 
+    // Most of the main API are under `/Accounts` path. To make the API more readable
     // in Postman, we are removing the "Accounts" from the API name / description
-    pathElements.splice(0,1)
+    pathElements.splice(0, 1);
   }
   return pathElements.join(' ').replace(/[A-Z]+/g, (element) => ' ' + element);
 }
@@ -16,6 +16,53 @@ function getAPINameFromPath(path) {
 function convertServerToHost(servers) {
   let server = servers[0].url;
   return server.split('//')[1].split('.');
+}
+
+function createPostRequestInfo(apiRequest, host, path) {
+  let tmpRequestInfo = {};
+  let pathVariables = [];
+  let variableNameRegex = /{(.*)}/;
+  tmpRequestInfo.url = {};
+
+  tmpRequestInfo.method = 'POST';
+
+  // Process Path
+  tmpRequestInfo.url.path = path.split('/');
+  tmpRequestInfo.url.path.forEach((item, index) => {
+    if (variableNameRegex.test(item)) {
+      let variableName = variableNameRegex.exec(item)[1];
+      pathVariables.push(variableName);
+      // Workaround for Postman path variable limitation
+      variableName = item.slice(1).replace('}', '');
+      tmpRequestInfo.url.path[index] = ':' + variableName;
+      if (!tmpRequestInfo.url.variable) {
+        tmpRequestInfo.url.variable = [];
+      }
+      tmpRequestInfo.url.variable.push({
+        key: variableName,
+        value: '',
+        description: '',
+      });
+    }
+  });
+
+  tmpRequestInfo.url.protocol = 'https';
+  tmpRequestInfo.url.host = host;
+  tmpRequestInfo.url.query = [];
+
+  tmpRequestInfo.body = { mode: 'urlencoded', urlencoded: [] };
+  bodyProperties = apiRequest.requestBody.content[ "application/x-www-form-urlencoded"].schema.properties
+  if (bodyProperties) {
+    for (property in bodyProperties) {
+      tmpRequestInfo.body.urlencoded.push({
+        key: property, 
+        value: property, 
+        description: bodyProperties[property].description
+      })
+    }
+  } 
+  // delete tmpRequestInfo.header;
+  return tmpRequestInfo;
 }
 
 function createGetRequestInfo(apiRequest, host, path) {
@@ -76,19 +123,28 @@ function createRequests(apiRequests, path) {
   let tmpRequests = [];
   if (apiRequests.get) {
     let tmpPostmanRequest = {};
-    tmpPostmanRequest.name = apiRequests.get.description || 'Fetch ' + getAPINameFromPath(path).toLowerCase();
+    tmpPostmanRequest.name =
+      apiRequests.get.description ||
+      'Fetch ' + getAPINameFromPath(path).toLowerCase();
     tmpPostmanRequest.request = createGetRequestInfo(
       apiRequests.get,
       host,
       path
     );
     tmpRequests.push(tmpPostmanRequest);
+  } 
+  if (apiRequests.post) {
+    let tmpPostmanRequest = {};
+    tmpPostmanRequest.name =
+      apiRequests.post.description ||
+      'Create ' + getAPINameFromPath(path).toLowerCase();
+    tmpPostmanRequest.request = createPostRequestInfo(
+      apiRequests.post,
+      host,
+      path
+    );
+    tmpRequests.push(tmpPostmanRequest);
   }
-  // TODO;
-  // if (apiRequests.post) {
-  //   let tmpPostmanRequest = { ...templPostmanRequest };
-  //   tmpRequest.push(tmpPostmanRequest);
-  // }
   return tmpRequests;
 }
 
@@ -124,9 +180,7 @@ const specPattern = /twilio_(.+)\.json/;
 fs.readdirSync('./twilio-api/')
   .filter((filename) => filename.match(specPattern))
   .map((apiFile) => {
-    let apiSource = JSON.parse(
-      fs.readFileSync('./twilio-api/' + apiFile)
-    );
+    let apiSource = JSON.parse(fs.readFileSync('./twilio-api/' + apiFile));
     let apiPaths = apiSource.paths;
     let productName = apiFile
       .replace('twilio_', '')
@@ -141,18 +195,23 @@ fs.readdirSync('./twilio-api/')
     for (path in apiPaths) {
       console.log(`  Processing ${path}`);
       subFolderName = getAPINameFromPath(path);
-      subFolderRequests = createRequests(apiPaths[path], path)
-      if (productFolder.items.length && productFolder.items[productFolder.items.length -1 ].name === subFolderName) {
-        // Usually API that requests a specific resource (by SID) are following API that requests 
+      subFolderRequests = createRequests(apiPaths[path], path);
+      if (
+        productFolder.items.length &&
+        productFolder.items[productFolder.items.length - 1].name ===
+          subFolderName
+      ) {
+        // Usually API that requests a specific resource (by SID) are following API that requests
         // all available resources (see for example /Credentials/AWS and Credentials/AWS/:Sid)
         // In this case we group them together in the same folder
-        productFolder.items[productFolder.items.length -1 ].item.push(...subFolderRequests)
+        productFolder.items[productFolder.items.length - 1].item.push(
+          ...subFolderRequests
+        );
       } else {
-
         let subFolder = {
-          name: subFolderName, 
-          item: subFolderRequests
-        }
+          name: subFolderName,
+          item: subFolderRequests,
+        };
         previousFolderIndex = productFolder.items.push(subFolder);
       }
     }
