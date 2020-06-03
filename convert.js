@@ -40,7 +40,7 @@ function createPostRequestInfo(apiRequest, host, path) {
       }
       tmpRequestInfo.url.variable.push({
         key: variableName,
-        value: '',
+        value: (variableName == "AccountSid" ? '{{twilio_account_sid}}': ''),
         description: '',
       });
     }
@@ -51,13 +51,15 @@ function createPostRequestInfo(apiRequest, host, path) {
   tmpRequestInfo.url.query = [];
 
   tmpRequestInfo.body = { mode: 'urlencoded', urlencoded: [] };
-  bodyProperties = apiRequest.requestBody.content[ "application/x-www-form-urlencoded"].schema.properties
+  let bodyProperties = apiRequest.requestBody.content[ "application/x-www-form-urlencoded"].schema.properties
+  let bodyPropertiesRequired = apiRequest.requestBody.content[ "application/x-www-form-urlencoded"].schema.required
   if (bodyProperties) {
     for (property in bodyProperties) {
       tmpRequestInfo.body.urlencoded.push({
         key: property, 
         value: property, 
-        description: bodyProperties[property].description
+        description: bodyProperties[property].description, 
+        disabled: !(bodyPropertiesRequired && bodyPropertiesRequired.indexOf(property) >= 0)
       })
     }
   } 
@@ -85,7 +87,7 @@ function createGetRequestInfo(apiRequest, host, path) {
       }
       tmpRequestInfo.url.variable.push({
         key: variableName,
-        value: '',
+        value: (variableName == "AccountSid" ? '{{twilio_account_sid}}': ''),
         description: '',
       });
     }
